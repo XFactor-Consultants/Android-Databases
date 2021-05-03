@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Noted</string>
+    <string name="title_home"></string>
+    <string name="title_compare"></string>
+    <string name="title_add"></string>
+    <string name="title_delete"></string>
+</resources>

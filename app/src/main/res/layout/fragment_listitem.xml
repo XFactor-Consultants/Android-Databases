@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_listitem"
+    android:layout_width="200sp"
+    android:layout_height="wrap_content"
+    android:layout_margin="5sp"
+    android:gravity="center">
+
+    <LinearLayout
+        android:id="@+id/listitem"
+        android:layout_width="180sp"
+        android:layout_height="180sp"
+        android:background="@drawable/border"
+        android:orientation="vertical"
+        android:padding="2sp">
+
+        <TextView
+            android:id="@+id/list_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10sp"
+            android:gravity="center"
+            android:padding="10sp"
+            android:text="List Name"
+            android:textSize="26sp" />
+
+        <TextView
+            android:id="@+id/list_elements"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5sp"
+            android:text="1. Item1" />
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/navigation_listcontainer">
+
+    <fragment
+        android:id="@+id/navigation_delete"
+        android:name="com.xfactor.noted.ui.delete.DeleteFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_delete" />
+
+    <fragment
+        android:id="@+id/navigation_listcontainer"
+        android:name="com.xfactor.noted.ui.listcontainer.ListContainerFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_listcontainer" />
+
+    <fragment
+        android:id="@+id/navigation_newlist"
+        android:name="com.xfactor.noted.ui.add.NewlistFragment"
+        android:label="@string/title_add"
+        tools:layout="@layout/fragment_newlist" />
+
+    <fragment
+        android:id="@+id/navigation_compare"
+        android:name="com.xfactor.noted.ui.compare.CompareFragment"
+        android:label="@string/title_compare"
+        tools:layout="@layout/fragment_compare" />
+</navigation>
