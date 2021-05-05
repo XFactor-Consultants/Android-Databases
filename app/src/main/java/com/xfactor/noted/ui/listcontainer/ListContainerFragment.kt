@@ -7,15 +7,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.xfactor.noted.ListItem
-import com.xfactor.noted.Lists
-import com.xfactor.noted.R
+import com.xfactor.noted.*
 import kotlinx.android.synthetic.main.fragment_listcontainer.view.*
 import kotlinx.android.synthetic.main.fragment_listitem.view.*
 
+private lateinit var statusText : TextView;
+
+fun updateStatus() {
+    if(ListsToCompare.size == 0)  return
+    var status = "Selected: ".plus(ListsToCompare[0].title)
+    if(ListsToCompare.size == 2) {
+        status = status.plus(", ").plus(ListsToCompare[1].title)
+    }
+    statusText.text = status
+}
 
 class ListContainerFragment : Fragment() {
 
@@ -29,6 +38,8 @@ class ListContainerFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_listcontainer, container, false)
         root.all_lists.layoutManager = GridLayoutManager(context, 2)
         root.all_lists.adapter = adapter
+        statusText = root.findViewById(R.id.status)
+        updateStatus()
         return root
     }
 
@@ -40,12 +51,14 @@ class ListsAdapter(private val dataSet: MutableList<ListItem>) :
         val listItem: LinearLayout = view.findViewById(R.id.listitem)
     }
 
-    private fun getSubItems(item: ListItem):String {
-        val inListForm = item.elements.mapIndexed {idx, value -> (idx+1).toString().plus(". ").plus(value)}
-        return inListForm.joinToString("\n")
-    }
-
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
+        viewHolder.listItem.setOnClickListener {
+            if(ListsToCompare.size > 1) {
+                ListsToCompare.clear()
+            }
+            ListsToCompare.add(dataSet[position])
+            updateStatus()
+        }
         val title = viewHolder.listItem.list_title
         title.text = dataSet[position].title
         title.paintFlags = title.paintFlags or Paint.UNDERLINE_TEXT_FLAG

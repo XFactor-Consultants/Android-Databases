@@ -20,6 +20,7 @@ import androidx.navigation.Navigation
 import com.xfactor.noted.ListItem
 import com.xfactor.noted.Lists
 import com.xfactor.noted.R
+import com.xfactor.noted.getSubItems
 
 class NewlistFragment : Fragment() {
 
@@ -55,11 +56,11 @@ class NewlistFragment : Fragment() {
 
         addItem.setOnClickListener {
             val builder: AlertDialog.Builder = AlertDialog.Builder(context)
-            builder.setTitle("Title")
+            builder.setTitle("New List Item")
             val input = EditText(context)
             input.inputType = InputType.TYPE_CLASS_TEXT
             builder.setView(input)
-            builder.setPositiveButton("OK"
+            builder.setPositiveButton("Add"
             ) { _, _ -> newlistViewModel.addItem(input.text.toString()) }
             builder.setNegativeButton("Cancel"
             ) { dialog, _ -> dialog.cancel() }
@@ -76,9 +77,5 @@ class NewlistFragment : Fragment() {
             Navigation.findNavController(it).navigate(R.id.navigation_listcontainer)
         }
         return root
-    }
-    private fun getSubItems(item: ListItem):String {
-        val inListForm = item.elements.mapIndexed {idx, value -> (idx+1).toString().plus(". ").plus(value)}
-        return inListForm.joinToString("\n")
     }
 }

@@ -20,6 +20,8 @@ val Lists = mutableListOf(
     ListItem(2, "List 3", elements = mutableListOf("Element 1", "Element 2"))
 )
 
+val ListsToCompare = mutableListOf<ListItem>()
+
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
