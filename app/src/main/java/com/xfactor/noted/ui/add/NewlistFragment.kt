@@ -58,7 +58,6 @@ class NewlistFragment : Fragment() {
             val builder: AlertDialog.Builder = AlertDialog.Builder(context)
             builder.setTitle("New List Item")
             val input = EditText(context)
-            input.inputType = InputType.TYPE_CLASS_TEXT
             builder.setView(input)
             builder.setPositiveButton("Add"
             ) { _, _ -> newlistViewModel.addItem(input.text.toString()) }

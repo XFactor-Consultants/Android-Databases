@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import com.xfactor.noted.Lists
+import com.xfactor.noted.ListsToCompare
 import com.xfactor.noted.R
 
 
@@ -38,6 +39,7 @@ class DeleteFragment : Fragment() {
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setPositiveButton("Delete") { _, _ ->
                         Lists.removeAt(index)
+                        ListsToCompare.clear()
                         Navigation.findNavController(it).navigate(R.id.navigation_listcontainer)
                     }
                     .setNegativeButton("Cancel") { dialog, _ -> dialog.cancel() }

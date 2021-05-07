@@ -34,15 +34,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="text|textCapCharacters"
+            android:inputType="text"
             android:text="List Name"
             android:textSize="25sp" />
 
         <TextView
             android:id="@+id/elements_adding"
             android:layout_width="match_parent"
-            android:layout_height="54dp"
-            android:layout_marginStart="16dp" />
+            android:layout_height="68dp"
+            android:layout_marginStart="16dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
         <Button
             android:id="@+id/add_item"
