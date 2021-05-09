@@ -50,8 +50,8 @@ class CompareFragment : Fragment() {
         }
         val leftList = ListsToCompare[0]
         val rightList = ListsToCompare[1]
-        leftTitle.text = leftList.title
-        rightTitle.text = rightList.title
+        leftTitle.text = leftList.list.title
+        rightTitle.text = rightList.list.title
         leftTitle.paintFlags = leftTitle.paintFlags or Paint.UNDERLINE_TEXT_FLAG
         rightTitle.paintFlags = rightTitle.paintFlags or Paint.UNDERLINE_TEXT_FLAG
         leftElements.text = getSubItems(leftList)

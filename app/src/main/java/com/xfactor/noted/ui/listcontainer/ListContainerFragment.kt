@@ -2,7 +2,6 @@ package com.xfactor.noted.ui.listcontainer
 
 import android.graphics.Paint
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.xfactor.noted.*
+import com.xfactor.noted.databse.ListWithListItems
 import kotlinx.android.synthetic.main.fragment_listcontainer.view.*
 import kotlinx.android.synthetic.main.fragment_listitem.view.*
 
@@ -19,16 +19,16 @@ private lateinit var statusText : TextView;
 
 fun updateStatus() {
     if(ListsToCompare.size == 0)  return
-    var status = "Selected: ".plus(ListsToCompare[0].title)
+    var status = "Selected: ".plus(ListsToCompare[0].list.title)
     if(ListsToCompare.size == 2) {
-        status = status.plus(", ").plus(ListsToCompare[1].title)
+        status = status.plus(", ").plus(ListsToCompare[1].list.title)
     }
     statusText.text = status
 }
 
 class ListContainerFragment : Fragment() {
 
-    private var adapter = ListsAdapter(Lists);
+    private var adapter = ListsAdapter(getLists());
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -44,7 +44,7 @@ class ListContainerFragment : Fragment() {
     }
 
 }
-class ListsAdapter(private val dataSet: MutableList<ListItem>) :
+class ListsAdapter(private val dataSet: List<ListWithListItems>) :
     RecyclerView.Adapter<ListsAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -60,7 +60,7 @@ class ListsAdapter(private val dataSet: MutableList<ListItem>) :
             updateStatus()
         }
         val title = viewHolder.listItem.list_title
-        title.text = dataSet[position].title
+        title.text = dataSet[position].list.title
         title.paintFlags = title.paintFlags or Paint.UNDERLINE_TEXT_FLAG
         viewHolder.listItem.list_elements.text = getSubItems(dataSet[position])
         val visibility: Int = viewHolder.listItem.visibility
