@@ -10,35 +10,33 @@ import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
-import com.xfactor.noted.Lists
 import com.xfactor.noted.ListsToCompare
 import com.xfactor.noted.R
+import com.xfactor.noted.deleteList
+import com.xfactor.noted.getLists
 
 
 class DeleteFragment : Fragment() {
 
-    private lateinit var deleteViewModel: DeleteViewModel
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        deleteViewModel =
-                ViewModelProviders.of(this).get(DeleteViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_delete, container, false)
         val deleteButtons = root.findViewById<LinearLayout>(R.id.delete_buttons)
 
-        Lists.forEachIndexed { index, listItem ->
+        getLists().forEachIndexed { _, listItem ->
             val newButton = Button(context)
-            newButton.text = listItem.title
+            newButton.text = listItem.list.title
             newButton.setOnClickListener {
                 AlertDialog.Builder(context)
                     .setTitle("Delete List")
-                    .setMessage("Do you really want to delete list \"".plus(listItem.title).plus("\"?"))
+                    .setMessage("Do you really want to delete list \"".plus(listItem.list.title).plus("\"?"))
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setPositiveButton("Delete") { _, _ ->
-                        Lists.removeAt(index)
+                        deleteList(listItem)
                         ListsToCompare.clear()
                         Navigation.findNavController(it).navigate(R.id.navigation_listcontainer)
                     }
