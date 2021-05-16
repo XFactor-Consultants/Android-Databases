@@ -7,5 +7,6 @@ import androidx.room.PrimaryKey
 data class ListItem (
     @PrimaryKey val uid: Int,
     val listId: Int,
-    val value: String
+    val value: String,
+    var order_number: Int?
 )

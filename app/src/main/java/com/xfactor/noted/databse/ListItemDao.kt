@@ -1,9 +1,6 @@
 package com.xfactor.noted.databse
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 
 @Dao
 interface ListItemDao {
@@ -15,4 +12,7 @@ interface ListItemDao {
 
     @Delete
     fun delete(listitem: com.xfactor.noted.databse.ListItem)
+
+    @Update
+    fun update(listitem: ListItem)
 }

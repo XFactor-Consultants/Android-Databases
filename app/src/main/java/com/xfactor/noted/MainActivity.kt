@@ -1,6 +1,7 @@
 package com.xfactor.noted
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -10,6 +11,7 @@ import androidx.room.Room
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.xfactor.noted.databse.AppDatabase
 import com.xfactor.noted.databse.migrations.MIGATION_1_2
+import com.xfactor.noted.databse.migrations.MIGRATION_2_3
 
 
 lateinit var appDatabase: AppDatabase
@@ -19,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         appDatabase = Room.databaseBuilder(applicationContext, AppDatabase::class.java, "noted-database").allowMainThreadQueries().addMigrations(
-            MIGATION_1_2).build()
+            MIGATION_1_2, MIGRATION_2_3).build()
 
         // Setting ActionBar logo
         supportActionBar?.setDisplayShowHomeEnabled(true)
@@ -35,6 +37,11 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_delete, R.id.navigation_listcontainer, R.id.navigation_newlist))
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+//        getLists().forEach { list-> list.ListItems.forEachIndexed{index, listItem ->
+//            listItem.order_number = index
+//            appDatabase.listItemDao().update(listItem)
+//        } }
+        Log.e("test", appDatabase.listDao().getCompareLists().toString())
     }
 }
 

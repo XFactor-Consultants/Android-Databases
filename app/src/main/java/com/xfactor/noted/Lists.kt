@@ -10,6 +10,10 @@ fun getLists() : List<ListWithListItems> {
     return appDatabase.listDao().getListsWithListItems()
 }
 
+fun getFavoriteLists() : List<ListWithListItems> {
+    return appDatabase.listDao().getAllFavorites()
+}
+
 fun getListItems(): List<ListItem> {
     return appDatabase.listItemDao().getAll()
 }
